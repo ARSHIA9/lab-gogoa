@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Bus;
+import services.FareCalculator;
+
 @WebServlet(urlPatterns= {"/bus"})
 public class BusController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,28 +31,28 @@ public class BusController extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-/*
+
 		
 			int numberOfPersons=Integer.parseInt(request.getParameter("persons"));
-		String bustype=request.getParameter("bustype");
+		String busType=request.getParameter("bustype");
 		String date=request.getParameter("start");
 		System.out.println(numberOfPersons);
-		System.out.println(bustype);
+		System.out.println(busType);
 		System.out.println(date);
 		int rates;
-		if(bustype.equals("acseater")){
+		if(busType.equalsIgnoreCase("acseater")){
 			rates=1250;
 		}
-		else if(bustype.equals("acsemisleeper")){
+		else if(busType.equalsIgnoreCase("acsemisleeper")){
 			rates=1500;
 		}
-		else if(bustype.equals("acsleeper")) {
+		else if(busType.equalsIgnoreCase("acsleeper")) {
 			rates=1800;
 		}
-		else if(bustype.equals("nonacseater")) {
+		else if(busType.equalsIgnoreCase("nonacseater")) {
 			rates=500;
 		}
-		else if(bustype.equals("nonacsemisleeper")) {
+		else if(busType.equalsIgnoreCase("nonacsemisleeper")) {
 			rates=750;
 		}
 		else {
@@ -58,10 +61,12 @@ public class BusController extends HttpServlet {
 		
 		LocalDate start=LocalDate.parse(date);				
 	
-		Bus bus=new Bus(numberOfPersons,rates,bustype,start);
+		Bus bus=new Bus(numberOfPersons,rates,busType,start);
 		bus.setNoOfPersons(numberOfPersons);
 		bus.setRates(rates);
-		bus.setBusType(bustype);
+		//bus.setBusType(busType);
+		bus.setBusType(busType);
+		//bus.setBusType(bustype);
 		bus.setDate(start);
 		
 		FareCalculator fare=new FareCalculator();
@@ -72,6 +77,6 @@ public class BusController extends HttpServlet {
 		request.setAttribute("busfare", rate);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/busView.jsp");
 		dispatcher.forward(request, response);
-*/	}
+	}
 	
 }
